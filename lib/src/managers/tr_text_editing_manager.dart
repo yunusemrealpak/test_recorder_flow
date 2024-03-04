@@ -10,16 +10,12 @@ class TRTextEditingManager {
   TRTextEditingManager._internal();
 
   void focusController(TRTextEditingController controller) {
-    final points = getWidgetPointsWithKey(controller.key);
-
     final event = """
-- tapOn:
-    point: ${points.center.convertPercentage.toPercentageString}
 - inputText: ${controller.text}
 - tapOn:
     point: 90%, 90%
 """;
 
-    TestRocerderFlow.instance.recordEvent(event);
+    TestRocerderFlow.addRecordEvent(event);
   }
 }

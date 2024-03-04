@@ -11,7 +11,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TestRocerderFlow.instance.setScreenSize(context);
     return const MaterialApp(home: SplashView());
   }
 }

@@ -1,7 +1,6 @@
 name: test_recorder_flow
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -10,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  path_provider: ^2.1.2
+  share_plus: ^7.2.2
 
 dev_dependencies:
   flutter_test:

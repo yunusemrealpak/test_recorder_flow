@@ -3,11 +3,6 @@ import 'package:example/pages/card_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:test_recorder_flow/test_recorder_flow.dart';
 
-enum ScrollableWidgetKey {
-  horizontalList,
-  verticalList,
-}
-
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -16,50 +11,30 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final _horizontalGlobalKey = GlobalKey();
-  final _verticalGlobalKey = GlobalKey();
-
-  late TRScrollController _scrollController;
-  late TRScrollController _horizontalScrollController;
   late TRTextEditingController _textEditingController;
 
   @override
   void initState() {
     super.initState();
-    _scrollController = TRScrollController();
-    _horizontalScrollController = TRScrollController();
     _textEditingController = TRTextEditingController();
-
-    Future.microtask(() {
-      _scrollController.setKey(_verticalGlobalKey, Axis.vertical);
-      _horizontalScrollController.setKey(_horizontalGlobalKey, Axis.horizontal);
-    });
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
-    _horizontalScrollController.dispose();
+    _textEditingController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        final currentFocus = FocusScope.of(context);
-
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
+    return TestRecorderFlowWrapper(
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Home View'),
           actions: [
             IconButton(
               onPressed: () {
-                for (var element in TestRocerderFlow.instance.recordedEvents) {
+                for (var element in TestRocerderFlow.recordedEvents) {
                   print(element);
                 }
               },
@@ -72,9 +47,7 @@ class _HomeViewState extends State<HomeView> {
             SizedBox(
               height: 100,
               child: ListView.builder(
-                key: _horizontalGlobalKey,
                 physics: const ClampingScrollPhysics(),
-                controller: _horizontalScrollController,
                 itemBuilder: (context, index) {
                   return Container(
                     width: 150,
@@ -91,14 +64,11 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
             TextFormField(
-              key: _textEditingController.key,
               focusNode: _textEditingController.focusNode,
               controller: _textEditingController,
             ),
             Expanded(
               child: ListView.builder(
-                key: _verticalGlobalKey,
-                controller: _scrollController,
                 physics: const ClampingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Container(
@@ -117,7 +87,7 @@ class _HomeViewState extends State<HomeView> {
               height: 100,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return TRGestureDetector(
+                  return GestureDetector(
                     onTap: () {
                       FocusScope.of(context).unfocus();
                       context.push(const CardDetailsView());
