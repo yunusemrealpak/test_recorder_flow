@@ -1,0 +1,1 @@
+xcrun simctl install Booted build/ios/Debug-iphonesimulator/Runner.app

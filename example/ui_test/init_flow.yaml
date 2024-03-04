@@ -1,0 +1,34 @@
+# flow.yaml
+
+appId: com.example.example
+---
+- launchApp
+- extendedWaitUntil:
+    visible: "Home View"
+    timeout: 10000
+- swipe:
+    start: 98%, 17%
+    end: 0%, 17%
+- swipe:
+    start: 98%, 17%
+    end: 0%, 17%
+- swipe:
+    start: 49%, 88%
+    end: 49%, 28%
+- tapOn:
+    point: 49%, 25%
+- inputText: buse
+- tapOn:
+    point: 90%, 90%
+- tapOn:
+    point: 18%, 94%
+    
+    
+# - scrollUntilVisible:
+#     element:
+#       text: "Card 8"
+#     direction: DOWN # DOWN|UP|LEFT|RIGHT (optional, default: DOWN)
+#     timeout: 50000 # (optional, default: 20000) ms
+#     speed: 40 # 0-100 (optional, default: 40) Scroll speed. Higher values scroll faster.
+#     visibilityPercentage: 100 # 0-100 (optional, default: 100) Percentage of element visible in viewport
+#     centerElement: false # true|false (optional, default: false)

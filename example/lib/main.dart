@@ -1,4 +1,6 @@
+import 'package:example/pages/splash_view.dart';
 import 'package:flutter/material.dart';
+import 'package:test_recorder_flow/test_recorder_flow.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,12 +11,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
+    TestRocerderFlow.instance.setScreenSize(context);
+    return const MaterialApp(home: SplashView());
   }
 }
